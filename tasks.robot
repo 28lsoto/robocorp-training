@@ -66,7 +66,7 @@ Get orders
 
 Open the robot order website
     ${urls}    Get Secret    sites
-    Open Browser    ${urls}[orders]    chrome
+    Open Browser    ${urls}[orders]
     Maximize Browser Window
 
 
