@@ -10,12 +10,15 @@ Library    RPA.Tables
 Library    RPA.PDF
 Library    RPA.Archive
 Library    RPA.Robocloud.Secrets
+Library    RPA.Dialogs
 
 *** Variables ***
 ${receiptoutputs}=    ${OUTPUT_DIR}${/}receipts${/}
 
 *** Tasks ***
 Order robots from RobotSpareBin Industries Inc
+    Add text input    zipname    Output File Name
+    ${response}=    Run dialog
     Open the robot order website
     ${orders}=    Get orders
     FOR    ${element}    IN    @{orders}
@@ -26,7 +29,9 @@ Order robots from RobotSpareBin Industries Inc
         Store the receipt as a PDF file    ${element}[Order number]
         Go to Another Order
     END
-    Archive Folder With Zip    ${receiptoutputs}    ${OUTPUT_DIR}${/}receipt.zip
+    
+    Log To Console    ${response}
+    Archive Folder With Zip    ${receiptoutputs}    ${OUTPUT_DIR}${/}${response}[zipname].zip
 
 *** Keywords ***
 Fill the form 
