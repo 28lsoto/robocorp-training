@@ -9,7 +9,7 @@ Library    RPA.HTTP
 Library    RPA.Tables
 Library    RPA.PDF
 Library    RPA.Archive
-Library    RPA.Robocloud.Secrets
+Library    RPA.Robocorp.Vault
 Library    RPA.Dialogs
 
 *** Variables ***
@@ -66,7 +66,7 @@ Get orders
 
 Open the robot order website
     ${urls}    Get Secret    sites
-    Open Browser    ${urls}[orders]
+    Open Browser    ${urls}[orders]    chrome
     Maximize Browser Window
 
 
